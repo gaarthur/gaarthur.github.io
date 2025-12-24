@@ -24,9 +24,9 @@ repository               : "academicpages/academicpages.github.io"
 author:
   # Biographic information
   avatar           : "profile.png"
-  name             : "Your Sidebar Name"
-  pronouns         : # example: "she/her"  
-  bio              : "Short biography for the left-hand sidebar"
+  name             : "Gabriel Arthur"
+  pronouns         : # example: "He/His"  
+  bio              : "PhD student in the Department of Statistics at Iowa State University"
   location         : "Earth"
   employer         : "Red Brick University"
   uri              : # URL
