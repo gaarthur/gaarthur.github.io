@@ -1,0 +1,413 @@
+<title>Gabriel Amoah Arthur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+/* Layout: fixed section bar across the top, one centered reading column beneath it; About pairs text with a portrait that stacks on narrow screens. */
+:root{
+  --bar:#1F3D34;
+  --bar-fg:#EAF1EC;
+  --bar-dim:#A9C0B5;
+  --bg:#FBFAF7;
+  --surface:#FFFFFF;
+  --fg:#1A201D;
+  --muted:#5C6762;
+  --rule:#E4E3DC;
+  --accent:#8A4F26;
+  --accent-soft:#F3E8DE;
+  --display:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --body:"Public Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bar:#15241F;
+    --bar-fg:#DEE8E2;
+    --bar-dim:#8DA397;
+    --bg:#111413;
+    --surface:#191E1C;
+    --fg:#E7EAE7;
+    --muted:#9AA59F;
+    --rule:#272C2A;
+    --accent:#D79B6A;
+    --accent-soft:#2B211A;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bar:#15241F;
+  --bar-fg:#DEE8E2;
+  --bar-dim:#8DA397;
+  --bg:#111413;
+  --surface:#191E1C;
+  --fg:#E7EAE7;
+  --muted:#9AA59F;
+  --rule:#272C2A;
+  --accent:#D79B6A;
+  --accent-soft:#2B211A;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--bg);
+  color:var(--fg);
+  font-family:var(--body);
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:var(--display);font-weight:600;margin:0;line-height:1.22;text-wrap:balance}
+p{margin:0}
+ul{margin:0;padding:0;list-style:none}
+em{font-style:italic}
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+a:hover{border-bottom-color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+
+.wrap{max-width:54rem;margin:0 auto;padding-inline:22px}
+
+/* ---- top bar ---- */
+.topbar{
+  position:sticky;top:env(safe-area-inset-top, 0px);z-index:30;
+  background:var(--bar);
+}
+.topbar .wrap{
+  display:flex;flex-wrap:wrap;align-items:center;gap:6px 26px;
+  padding-block:13px;
+}
+.tabs{display:flex;flex-wrap:wrap;gap:4px 22px;margin-right:auto}
+.tabs a{
+  color:var(--bar-dim);border-bottom:2px solid transparent;
+  font-size:15px;padding-bottom:2px;
+}
+.tabs a:hover{color:var(--bar-fg)}
+.tabs a[aria-current="page"]{color:#fff;border-bottom-color:var(--accent)}
+:root[data-theme="dark"] .tabs a[aria-current="page"],
+:root:not([data-theme="light"]) .tabs a[aria-current="page"]{color:var(--bar-fg)}
+.links{display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+.links a{color:var(--bar-dim);border-bottom:none;font-size:14px;display:inline-flex;align-items:center;gap:6px}
+.links a:hover{color:var(--bar-fg)}
+.links svg{width:17px;height:17px;fill:currentColor;display:block}
+
+/* ---- pages ---- */
+.page{padding-block:46px 72px}
+.page h1{font-size:clamp(30px,5.6vw,40px);letter-spacing:-.01em;margin-bottom:26px}
+
+/* About */
+.about-grid{display:grid;grid-template-columns:1fr 17rem;gap:38px;align-items:start}
+.prose{max-width:36rem;display:flex;flex-direction:column;gap:17px;min-width:0}
+.prose p{font-size:16.5px}
+.badges{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:4px}
+.badge{
+  display:inline-flex;align-items:center;gap:7px;
+  border:1px solid var(--rule);background:var(--surface);color:var(--fg);
+  border-radius:5px;padding:6px 12px;font-size:13.5px;
+}
+.badge:hover{border-color:var(--accent)}
+.badge svg{width:15px;height:15px;fill:currentColor}
+button.badge{cursor:pointer;font-family:var(--body)}
+
+.portrait{position:relative}
+.portrait img{
+  width:100%;aspect-ratio:3/4;object-fit:cover;display:block;
+  border:1px solid var(--rule);border-radius:3px;background:var(--surface);
+}
+.portrait figcaption{
+  font-family:var(--mono);font-size:11.5px;color:var(--muted);
+  margin-top:10px;line-height:1.5;
+}
+.photo-slot{
+  width:100%;aspect-ratio:3/4;border:1px dashed var(--rule);border-radius:3px;
+  background:var(--surface);display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:9px;text-align:center;padding:22px;color:var(--muted);
+}
+.photo-slot strong{font-family:var(--body);font-weight:600;color:var(--fg);font-size:14.5px}
+.photo-slot code{font-family:var(--mono);font-size:12px;background:var(--accent-soft);color:var(--accent);padding:2px 6px;border-radius:3px}
+.photo-slot span{font-size:12.5px;line-height:1.5}
+
+.note{
+  border-top:1px solid var(--rule);margin-top:10px;padding-top:16px;
+  color:var(--muted);font-size:14px;max-width:36rem;
+}
+
+/* Education + lists */
+.rows li{
+  display:grid;grid-template-columns:11rem 1fr;gap:3px 26px;
+  padding-block:17px;border-top:1px solid var(--rule);
+}
+.rows li:first-child{border-top:none;padding-top:4px}
+.when{font-family:var(--mono);font-size:12.5px;color:var(--muted);padding-top:4px}
+.what strong{display:block;font-size:17px;font-weight:600}
+.what .where{color:var(--muted);font-style:italic;font-size:15px}
+.what .detail{color:var(--muted);font-size:14.5px;margin-top:6px}
+
+/* Research */
+h2.sub{
+  font-size:20px;margin-top:34px;margin-bottom:12px;
+  padding-bottom:7px;border-bottom:1px solid var(--rule);
+}
+.bul li{position:relative;padding-left:19px;margin-top:10px;font-size:15.5px}
+.bul li::before{
+  content:"";position:absolute;left:2px;top:.68em;width:6px;height:6px;
+  border-radius:50%;background:var(--accent);opacity:.75;
+}
+.bul .by{color:var(--muted)}
+.interests{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.chip{
+  border:1px solid var(--rule);background:var(--surface);border-radius:999px;
+  padding:5px 13px;font-size:13.5px;color:var(--fg);
+}
+
+/* Experience */
+.org{
+  font-family:var(--display);font-size:20px;font-weight:600;
+  margin-top:32px;margin-bottom:10px;
+}
+.org:first-of-type{margin-top:4px}
+.org .place{color:var(--muted);font-weight:400;font-family:var(--body);font-size:16px}
+.role-line{font-weight:600}
+.role-line .date{font-family:var(--mono);font-weight:400;font-size:12.5px;color:var(--muted);margin-left:8px}
+
+footer{border-top:1px solid var(--rule);padding-block:24px 52px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:space-between;color:var(--muted);font-size:13px}
+footer span{font-family:var(--mono);font-size:12px}
+
+@media (max-width:720px){
+  .about-grid{grid-template-columns:1fr;gap:30px}
+  .portrait{max-width:16rem}
+}
+@media (max-width:560px){
+  .rows li{grid-template-columns:1fr}
+  .when{padding-top:0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<header class="topbar">
+  <div class="wrap">
+    <nav class="tabs" id="tabs">
+      <a href="#about" data-tab="about">About</a>
+      <a href="#education" data-tab="education">Education</a>
+      <a href="#research" data-tab="research">Research</a>
+      <a href="#experience" data-tab="experience">Experience</a>
+    </nav>
+    <div class="links">
+      <a href="https://github.com/" title="GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>GitHub</a>
+      <a href="https://www.linkedin.com/" title="LinkedIn"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.6 1.6a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM1.9 6.5h3.4V16H1.9V6.5ZM7.2 6.5h3.26v1.3h.05c.45-.82 1.56-1.68 3.2-1.68 3.43 0 4.06 2.14 4.06 4.93V16h-3.4v-4.3c0-1.03-.02-2.35-1.5-2.35-1.5 0-1.73 1.12-1.73 2.28V16H7.2V6.5Z"/></svg>LinkedIn</a>
+      <a href="https://scholar.google.com/" title="Google Scholar"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0 0 5.2l8 5.2 8-5.2L8 0Zm-4.6 7.6v3.1c0 1.9 2.1 3.3 4.6 3.3s4.6-1.4 4.6-3.3V7.6L8 10.7 3.4 7.6Z"/></svg>Scholar</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ABOUT -->
+  <article class="wrap page" id="page-about">
+    <h1>Welcome</h1>
+    <div class="about-grid">
+      <div class="prose">
+        <div class="badges">
+          <button class="badge" type="button" id="copy-email">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 3h13c.28 0 .5.22.5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9c0-.28.22-.5.5-.5Zm.9 1.2L8 8.3l5.6-4.1H2.4Z"/></svg>
+            gaarthur@iastate.edu
+          </button>
+          <a class="badge" href="https://github.com/">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+            GitHub
+          </a>
+          <a class="badge" href="https://www.linkedin.com/">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.6 1.6a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM1.9 6.5h3.4V16H1.9V6.5ZM7.2 6.5h3.26v1.3h.05c.45-.82 1.56-1.68 3.2-1.68 3.43 0 4.06 2.14 4.06 4.93V16h-3.4v-4.3c0-1.03-.02-2.35-1.5-2.35-1.5 0-1.73 1.12-1.73 2.28V16H7.2V6.5Z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+
+        <p>Hi! I am Gabriel Amoah Arthur. I am a PhD student in the <a href="https://www.stat.iastate.edu/">Department of Statistics</a> at <a href="https://www.iastate.edu/">Iowa State University</a>, where I work with <a href="https://faculty.sites.iastate.edu/kdorman/">Dr. Karin Dorman</a>.</p>
+
+        <p>I received my Bachelor of Science in Statistics in 2022 from <a href="https://www.knust.edu.gh/">Kwame Nkrumah University of Science and Technology</a> in Kumasi, Ghana, and completed my Master of Science in Statistics at Iowa State University in May 2026. My doctoral research develops <em>a novel profile hidden Markov model for genotyping viruses in diagnostic samples from noisy sequencing reads</em> — a method that returns a probabilistic consensus sequence for a viral genome instead of a single hard call at each site. The project is funded by the NSF and NIH.</p>
+
+        <p>More broadly, my research interests are in statistical genomics, Bayesian methods for clinical trials, survival analysis, high-dimensional data, and statistical computing, with the common thread of putting careful methodology to work on problems in public health and genetics. A copy of my CV is available <a href="cv.pdf">here</a>.</p>
+
+        <p>Apart from academics, I play soccer and ping pong, and I am a keen video gamer — FC 26 most of all.</p>
+
+        <p class="note">I will keep adding projects, notes, and (maybe) articles here. If you have thoughts or suggestions, I would be glad to hear them — write to me at <a href="mailto:gaarthur@iastate.edu">gaarthur@iastate.edu</a>.</p>
+      </div>
+
+      <figure class="portrait" id="portrait">
+        <div class="photo-slot" id="photo-slot">
+          <strong>Your photo goes here</strong>
+          <span>Save it as <code>profile.jpg</code> next to <code>index.html</code> and it appears automatically.</span>
+          <span>Portrait orientation works best.</span>
+        </div>
+        <figcaption id="portrait-cap" hidden>Gabriel Amoah Arthur</figcaption>
+      </figure>
+    </div>
+  </article>
+
+  <!-- EDUCATION -->
+  <article class="wrap page" id="page-education" hidden>
+    <h1>Education</h1>
+    <ul class="rows">
+      <li>
+        <span class="when">2026 &ndash; Present</span>
+        <span class="what">
+          <strong>Doctor of Philosophy, Statistics</strong>
+          <span class="where">Iowa State University, Ames, Iowa</span>
+          <span class="detail">Dissertation: Probabilistic Consensus Sequence Inference of Viral Genomes via Profile Hidden Markov Models. Coursework in advanced statistical inference, measure-theoretic probability, survival analysis, statistical genetics, high-dimensional data analysis, and statistical computing. Expected 2028.</span>
+        </span>
+      </li>
+      <li>
+        <span class="when">Aug 2023 &ndash; May 2026</span>
+        <span class="what">
+          <strong>Master of Science, Statistics</strong>
+          <span class="where">Iowa State University, Ames, Iowa</span>
+        </span>
+      </li>
+      <li>
+        <span class="when">2018 &ndash; 2022</span>
+        <span class="what">
+          <strong>Bachelor of Science (Hons.), Statistics</strong>
+          <span class="where">Kwame Nkrumah University of Science and Technology, Kumasi, Ghana</span>
+        </span>
+      </li>
+    </ul>
+  </article>
+
+  <!-- RESEARCH -->
+  <article class="wrap page" id="page-research" hidden>
+    <h1>Research</h1>
+    <div class="prose" style="max-width:40rem">
+      <p>I am currently working on <em>probabilistic consensus sequence inference</em> for viral genomes: given noisy sequencing reads from a diagnostic sample, how much can a model tell us about the underlying genome, and how confident should it be at each base? My approach builds a profile hidden Markov model that carries uncertainty all the way through, reporting a per-base posterior probability rather than a single hard call. It is benchmarked against the standard variant-calling stack (iVar, Medaka, BCFtools) across divergence categories, insertion and deletion scenarios, and sequencing-depth regimes, and it holds up best exactly where conventional pipelines degrade: low depth and high divergence.</p>
+      <p>I also work on Bayesian methods for clinical trials, where variational inference makes interim monitoring cheap enough to run often.</p>
+    </div>
+
+    <h2 class="sub">Research interests</h2>
+    <div class="interests">
+      <span class="chip">Statistical genomics</span>
+      <span class="chip">Hidden Markov models</span>
+      <span class="chip">Bayesian methods for clinical trials</span>
+      <span class="chip">Survival analysis</span>
+      <span class="chip">Variational inference</span>
+      <span class="chip">High-dimensional data analysis</span>
+      <span class="chip">Statistical computing &amp; simulation</span>
+    </div>
+
+    <h2 class="sub">Manuscripts under preparation</h2>
+    <ul class="bul">
+      <li><em>A Novel Profile Hidden Markov Model for Genotyping Viruses in Diagnostic Samples from Noisy Sequencing Reads</em>, <span class="by">with <strong>Dr. Karin Dorman</strong> — NSF/NIH-funded.</span></li>
+      <li><em>Variational Bayes Inference for the Log-Logistic Accelerated Failure Time Model with Interval-Censored Data</em>, <span class="by">with <strong>D. Ayikambey</strong> — a fast, deterministic alternative to MCMC for Bayesian survival analysis, with VB posteriors calibrated against MCMC and an accompanying R package.</span></li>
+    </ul>
+
+    <h2 class="sub">Other work</h2>
+    <ul class="bul">
+      <li><em>Fractional Stochastic Modified Equations and Optimal Control</em>, <span class="by">with <strong>P. A. Tchoumo</strong> and <strong>K. Ogunsusi</strong> — modeling stochastic gradient descent noise that carries memory over time, with adaptive learning-rate schedules derived from it and validated on CIFAR-10 gradient noise and financial time series.</span></li>
+    </ul>
+
+    <h2 class="sub">Talks</h2>
+    <ul class="bul">
+      <li><em>A Novel Profile Hidden Markov Model for Genotyping Viruses in Diagnostic Samples from Noisy Sequencing Reads</em>, <span class="by">research group seminar, Department of Statistics, Iowa State University, July 2026.</span></li>
+    </ul>
+  </article>
+
+  <!-- EXPERIENCE -->
+  <article class="wrap page" id="page-experience" hidden>
+    <h1>Experience</h1>
+
+    <h2 class="org">At <span style="color:var(--accent)">Iowa State University</span><span class="place">, Ames, IA, USA</span></h2>
+    <ul class="bul">
+      <li><span class="role-line">Graduate Research Assistant, Department of Statistics<span class="date">Jan 2026 &ndash; Present</span></span></li>
+      <li>Designed a profile hidden Markov model that infers a probabilistic consensus sequence for viral genomes, under NSF/NIH funding.</li>
+      <li>Benchmarked the method head-to-head against iVar, Medaka, and BCFtools, and established the per-base posterior probability score as the primary evaluation metric.</li>
+      <li>Built the full simulation and evaluation pipeline in R and Python, and presented findings to collaborators in technical seminars.</li>
+      <li style="margin-top:20px"><span class="role-line">Graduate Teaching Assistant<span class="date">Aug 2023 &ndash; Dec 2025</span></span></li>
+      <li><strong>STAT 2260</strong>: Business Statistics — instructor of record for a full undergraduate section.</li>
+      <li><strong>STAT 101</strong>: Principles of Statistics — weekly computer lab instructor, guiding students through applied data analysis and statistical software.</li>
+    </ul>
+
+    <h2 class="org">At <span style="color:var(--accent)">Kumasi Center for Collaborative Research</span><span class="place">, KNUST, Kumasi, Ghana</span></h2>
+    <ul class="bul">
+      <li><span class="role-line">Statistician (National Service)<span class="date">Nov 2022 &ndash; Jul 2023</span></span></li>
+      <li>Analyzed clinical trial data supporting drug development studies.</li>
+      <li>Managed case report form data entry and quality control in REDCap, maintaining data integrity across study visits.</li>
+    </ul>
+
+    <h2 class="org">At <span style="color:var(--accent)">Ghana Revenue Authority</span><span class="place">, Agona Swedru, Ghana</span></h2>
+    <ul class="bul">
+      <li><span class="role-line">Assistant Statistician, Intern<span class="date">Oct 2021 &ndash; Nov 2021</span></span></li>
+      <li>Entered and verified transaction records against source documents to catch entry errors.</li>
+      <li>Supported the lead statistician in compiling weekly and monthly reporting.</li>
+    </ul>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 Gabriel Amoah Arthur</span>
+    <span>Last updated October 2026</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var valid = ['about','education','research','experience'];
+  var links = Array.prototype.slice.call(document.querySelectorAll('#tabs a'));
+
+  function show(name){
+    if(valid.indexOf(name) === -1){ name = 'about'; }
+    valid.forEach(function(v){
+      var el = document.getElementById('page-' + v);
+      if(el){ el.hidden = (v !== name); }
+    });
+    links.forEach(function(a){
+      if(a.getAttribute('data-tab') === name){ a.setAttribute('aria-current','page'); }
+      else { a.removeAttribute('aria-current'); }
+    });
+    window.scrollTo(0,0);
+  }
+
+  function fromHash(){
+    show((location.hash || '#about').replace('#',''));
+  }
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
+})();
+
+(function(){
+  // Swap in profile.jpg when it is present; otherwise keep the instructions panel.
+  var fig = document.getElementById('portrait');
+  var slot = document.getElementById('photo-slot');
+  var cap = document.getElementById('portrait-cap');
+  if(!fig || !slot) return;
+  var img = new Image();
+  img.onload = function(){
+    img.alt = 'Gabriel Amoah Arthur';
+    fig.replaceChild(img, slot);
+    if(cap){ cap.hidden = false; }
+  };
+  img.onerror = function(){ /* leave the slot in place */ };
+  img.src = 'profile.jpg';
+})();
+
+(function(){
+  var btn = document.getElementById('copy-email');
+  if(!btn) return;
+  var original = btn.innerHTML;
+  var addr = 'gaarthur@iastate.edu';
+  btn.addEventListener('click', function(){
+    var done = function(){
+      btn.textContent = 'Copied: ' + addr;
+      setTimeout(function(){ btn.innerHTML = original; }, 1800);
+    };
+    var select = function(){
+      try{
+        var r = document.createRange();
+        r.selectNodeContents(btn);
+        var s = window.getSelection();
+        s.removeAllRanges();
+        s.addRange(r);
+      }catch(e){}
+    };
+    try{ navigator.clipboard.writeText(addr).then(done, select); }
+    catch(e){ select(); }
+  });
+})();
+</script>
